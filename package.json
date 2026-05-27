@@ -1,6 +1,6 @@
 {
   "name": "humanitas-check",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Audit AI system prompts against Magnifica Humanitas (Leo XIV, 2026)",
   "type": "module",
   "bin": {
@@ -18,7 +18,14 @@
     "dist/",
     "docs/encyclicals/principles-reference.md"
   ],
-  "keywords": ["ai", "ethics", "catholic", "social-doctrine", "cli", "system-prompt"],
+  "keywords": [
+    "ai",
+    "ethics",
+    "catholic",
+    "social-doctrine",
+    "cli",
+    "system-prompt"
+  ],
   "license": "MIT",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.54.0",
