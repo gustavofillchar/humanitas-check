@@ -69,6 +69,48 @@ cat system-prompt.txt | humanitas-check --stdin
 
 ---
 
+## Output interpretation
+
+| Verdict | Meaning | Recommended CI action |
+|---------|---------|-----------------------|
+| `PASS` (score ≥80) | Low risk — no clear violations | Allow |
+| `WARN` (score 50–79) | Potential concern — ambiguous or borderline | Review gate (human sign-off) |
+| `FAIL` (score <50) | Clear violation of one or more principles | Block deployment |
+
+A single `FAIL` on any principle sets the overall verdict to `fail` (exit code 1). Use `--format json` to get per-principle details for automated triage.
+
+---
+
+## Model comparison
+
+| Model | Quality | Cost | Best for |
+|-------|---------|------|----------|
+| `claude-opus-4-7` *(default)* | Highest | Higher | Final CI gates, compliance audits |
+| `claude-sonnet-4-6` | Good | ~5× lower | Fast iteration, draft reviews |
+
+Doctrine context is cached after the first call (~4 000 tokens reused), so subsequent calls on the same machine are cheaper regardless of model.
+
+---
+
+## Troubleshooting
+
+**`ANTHROPIC_API_KEY not set`**  
+Run `humanitas-check` from the directory that contains `.env` or `.env.local`, or export the key in your shell: `export ANTHROPIC_API_KEY=sk-ant-...`
+
+**`Error: principles-reference.md not found`**  
+The package was installed incompletely. Run `npm install -g humanitas-check` again, or run from the repo root with `npx tsx src/cli.ts`.
+
+**CLI hangs with no output**  
+The API call has a 120-second timeout. If it fires, you will see an `AbortError`. Check your network connection or VPN.
+
+**`Error: --model must be one of: ...`**  
+The tool accepts `claude-opus-4-7` and `claude-sonnet-4-6` (case-insensitive).
+
+**Node.js version error**  
+Requires Node.js ≥18. Check with `node --version`.
+
+---
+
 ## Example output
 
 ```

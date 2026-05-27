@@ -51,27 +51,34 @@ export async function analyzeContent(
   const client = new Anthropic();
   const doctrine = loadDoctrine();
 
-  const response = await client.messages.create({
-    model: opts.model,
-    max_tokens: 4096,
-    system: [
-      {
-        type: 'text',
-        text: doctrine,
-        cache_control: { type: 'ephemeral' },
-      },
-      {
-        type: 'text',
-        text: ANALYSIS_INSTRUCTIONS,
-      },
-    ],
-    messages: [
-      {
-        role: 'user',
-        content: `Audit the following AI system prompt / agent configuration:\n\n---\n${content}\n---`,
-      },
-    ],
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 120_000);
+  let response: Awaited<ReturnType<typeof client.messages.create>>;
+  try {
+    response = await client.messages.create({
+      model: opts.model,
+      max_tokens: 4096,
+      system: [
+        {
+          type: 'text',
+          text: doctrine,
+          cache_control: { type: 'ephemeral' },
+        },
+        {
+          type: 'text',
+          text: ANALYSIS_INSTRUCTIONS,
+        },
+      ],
+      messages: [
+        {
+          role: 'user',
+          content: `Audit the following AI system prompt / agent configuration:\n\n---\n${content}\n---`,
+        },
+      ],
+    }, { signal: controller.signal });
+  } finally {
+    clearTimeout(timeout);
+  }
 
   const textBlock = response.content.find((b) => b.type === 'text');
   if (!textBlock || textBlock.type !== 'text') {
@@ -83,6 +90,10 @@ export async function analyzeContent(
     parsed = JSON.parse(textBlock.text);
   } catch {
     throw new Error(`Claude response was not valid JSON:\n${textBlock.text.slice(0, 500)}`);
+  }
+
+  if (!Array.isArray(parsed.principles)) {
+    throw new Error(`Claude response missing "principles" array:\n${textBlock.text.slice(0, 500)}`);
   }
 
   return {

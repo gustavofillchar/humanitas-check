@@ -41,13 +41,13 @@ program
       process.exit(2);
     }
 
-    const model = cmdOpts['model'];
+    const model = (cmdOpts['model'] as string).toLowerCase();
     if (!VALID_MODELS.includes(model)) {
       console.error(`Error: --model must be one of: ${VALID_MODELS.join(', ')}`);
       process.exit(2);
     }
 
-    if (!process.env['ANTHROPIC_API_KEY']) {
+    if (!process.env['ANTHROPIC_API_KEY']?.trim()) {
       const hasEnv = existsSync(join(cwd, '.env')) || existsSync(join(cwd, '.env.local'));
       if (!hasEnv) {
         console.error('Error: no .env or .env.local found in current directory — run humanitas-check from your project root');
@@ -60,7 +60,12 @@ program
     let content: string;
     try {
       if (cmdOpts['stdin']) {
-        content = readFileSync('/dev/stdin', 'utf-8');
+        content = await new Promise<string>((resolve, reject) => {
+          const chunks: Buffer[] = [];
+          process.stdin.on('data', (chunk) => chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk)));
+          process.stdin.on('end', () => resolve(Buffer.concat(chunks).toString('utf-8')));
+          process.stdin.on('error', reject);
+        });
       } else if (file) {
         content = readFileSync(file, 'utf-8');
       } else {
@@ -72,6 +77,10 @@ program
       const message = err instanceof Error ? err.message : String(err);
       console.error(`Error reading input: ${message}`);
       process.exit(2);
+    }
+
+    if (content.length > 50_000) {
+      process.stderr.write(`Warning: input is ${Math.round(content.length / 1024)}KB — large inputs may exceed API token limits\n`);
     }
 
     const opts: CheckOptions = { format, model };
