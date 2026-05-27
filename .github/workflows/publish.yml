@@ -18,6 +18,8 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
+      - run: npm version ${GITHUB_REF_NAME} --no-git-tag-version
+
       - run: npm ci
 
       - run: npm run build
