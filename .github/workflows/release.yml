@@ -14,6 +14,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
       - name: Compute next patch tag
         id: tag
         run: |
@@ -33,3 +38,12 @@ jobs:
           gh release create ${{ steps.tag.outputs.next }} --generate-notes --title "${{ steps.tag.outputs.next }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to npm
+        run: |
+          npm version ${{ steps.tag.outputs.next }} --no-git-tag-version
+          npm ci
+          npm run build
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
