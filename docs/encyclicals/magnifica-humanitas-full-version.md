@@ -1,6 +1,6 @@
- Th   e HOLY   SEE
+ The HOLY SEE
 
- LEO   XIV  ENCYCLICALS                                                                                        ENGLISH
+ LEO XIV ENCYCLICALS                                                                                        ENGLISH
 
 
 
