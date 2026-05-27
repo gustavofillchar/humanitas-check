@@ -18,7 +18,8 @@
     "dist/",
     "docs/encyclicals/principles-reference.md",
     "docs/examples/",
-    ".claude/commands/"
+    ".claude/commands/",
+    ".claude/skills/"
   ],
   "keywords": [
     "ai",

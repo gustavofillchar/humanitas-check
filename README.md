@@ -215,9 +215,30 @@ Fail the pipeline when an agent's system prompt violates any principle:
 
 ## Claude Code skill
 
-The `/humanitas-check` slash command lets you audit prompts directly from Claude Code.
+The `/humanitas-check` skill lets you audit prompts directly inside Claude Code — no extra API key, no subprocess.
 
-**Install the skill in your project:**
+### Global install (recommended)
+
+Installs the skill for all your projects:
+
+```sh
+# npm
+npm install -g humanitas-check
+
+# pnpm
+pnpm add -g humanitas-check
+
+# yarn
+yarn global add humanitas-check
+```
+
+Then copy the skill to your global Claude skills directory:
+```sh
+mkdir -p ~/.claude/skills/humanitas-check
+cp $(npm root -g)/humanitas-check/.claude/skills/humanitas-check/SKILL.md ~/.claude/skills/humanitas-check/
+```
+
+### Per-project install
 
 ```sh
 # npm
@@ -230,13 +251,25 @@ pnpm add -D humanitas-check
 yarn add -D humanitas-check
 ```
 
-Then copy the skill file:
+Then copy to your project:
 ```sh
-mkdir -p .claude/commands
-cp node_modules/humanitas-check/.claude/commands/humanitas-check.md .claude/commands/
+mkdir -p .claude/skills/humanitas-check
+cp node_modules/humanitas-check/.claude/skills/humanitas-check/SKILL.md .claude/skills/humanitas-check/
 ```
 
-Then in Claude Code, run `/humanitas-check path/to/system-prompt.txt` or `/humanitas-check` and paste your prompt directly.
+### Usage
+
+In Claude Code, run:
+```
+/humanitas-check path/to/system-prompt.txt
+```
+Or invoke `/humanitas-check` and paste your prompt directly.
+
+Claude audits the content inline against all 10 principles and outputs score, per-principle verdicts, findings, and remediation guidance.
+
+### CLI mode (for CI/CD)
+
+The CLI tool is still available for pipelines and scripted use — see [CI/CD](#cicd) below.
 
 ---
 
