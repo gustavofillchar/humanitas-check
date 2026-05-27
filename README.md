@@ -22,7 +22,14 @@ Useful for:
 ## Installation
 
 ```sh
+# global (CLI use)
 npm install -g humanitas-check
+pnpm add -g humanitas-check
+yarn global add humanitas-check
+
+# local dev dependency
+npm install --save-dev humanitas-check
+pnpm add -D humanitas-check
 ```
 
 Requires Node.js ≥18 and an [Anthropic API key](https://console.anthropic.com/).
@@ -211,11 +218,20 @@ Fail the pipeline when an agent's system prompt violates any principle:
 The `/humanitas-check` slash command lets you audit prompts directly from Claude Code.
 
 **Install the skill in your project:**
+
 ```sh
-# install the package (if not already)
+# npm
 npm install --save-dev humanitas-check
 
-# copy the skill to your project
+# pnpm
+pnpm add -D humanitas-check
+
+# yarn
+yarn add -D humanitas-check
+```
+
+Then copy the skill file:
+```sh
 mkdir -p .claude/commands
 cp node_modules/humanitas-check/.claude/commands/humanitas-check.md .claude/commands/
 ```
