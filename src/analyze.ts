@@ -57,7 +57,7 @@ export async function analyzeContent(
   try {
     response = await client.messages.create({
       model: opts.model,
-      max_tokens: 4096,
+      max_tokens: 8192,
       system: [
         {
           type: 'text',
