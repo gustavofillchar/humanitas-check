@@ -1,7 +1,7 @@
 # Magnifica Humanitas — Document Structure
 
 Encyclical Letter of His Holiness Leo XIV, 15 May 2026.  
-Source: `magnifica-humanitas-full-version.md` (2825 lines)
+Source: `magnifica-humanitas-full-version.md` (3110 lines)
 
 Split into 7 chapter files + 1 synthesized principles reference for humanitas-checker CLI.
 
@@ -11,13 +11,13 @@ Split into 7 chapter files + 1 synthesized principles reference for humanitas-ch
 
 | File | Lines | Content | Rule Relevance |
 |------|-------|---------|----------------|
-| [00-toc-and-introduction.md](00-toc-and-introduction.md) | 1–269 | Table of Contents + Introduction (§§1–16): res novae, Tower of Babel vs. Nehemiah, building for common good | `context`, `common-good`, `dignity`, `subsidiarity` |
-| [01-chapter-one-dynamic-approach.md](01-chapter-one-dynamic-approach.md) | 270–604 | Chapter 1 (§§17–45): Church social doctrine history (Leo XIII → Francis), methodology, see-judge-act | `methodology`, `discernment`, `historical-context` |
-| [02-chapter-two-foundations-principles.md](02-chapter-two-foundations-principles.md) | 605–980 | Chapter 2 (§§46–89): **Core principles** — dignity, common good, universal destination of goods, subsidiarity, solidarity, social justice, integral development | `dignity`, `common-good`, `universal-destination`, `subsidiarity`, `solidarity`, `social-justice` |
-| [03-chapter-three-technology-dominance.md](03-chapter-three-technology-dominance.md) | 981–1328 | Chapter 3 (§§90–130): **AI-specific** — technocratic paradigm, AI governance, accountability, transparency, transhumanism critique, human primacy | `technocratic-paradigm`, `ai-governance`, `transparency`, `oversight`, `human-primacy` |
-| [04-chapter-four-truth-work-freedom.md](04-chapter-four-truth-work-freedom.md) | 1329–1777 | Chapter 4 (§§131–181): Truth, disinformation, dignity of work, unemployment, freedom from dependencies, data colonialism, AI labor supply chain | `truth`, `manipulation`, `human-oversight`, `dependency`, `labor-dignity`, `freedom`, `privacy` |
-| [05-chapter-five-civilization-of-love.md](05-chapter-five-civilization-of-love.md) | 1778–2155 | Chapter 5 (§§182–228): Autonomous weapons, lethal AI, non-negotiable human control over lethal decisions, culture of power, multilateralism | `autonomous-weapons`, `lethal-ai`, `accountability-chain`, `power-concentration` |
-| [06-conclusion-and-notes.md](06-conclusion-and-notes.md) | 2156–2825 | Conclusion (§§229–245) + all 224 footnotes | `synthesis`, `program-of-action` |
+| [00-toc-and-introduction.md](00-toc-and-introduction.md) | 1–300 | Table of Contents + Introduction (§§1–16): res novae, Tower of Babel vs. Nehemiah, building for common good | `context`, `common-good`, `dignity`, `subsidiarity` |
+| [01-chapter-one-dynamic-approach.md](01-chapter-one-dynamic-approach.md) | 301–664 | Chapter 1 (§§17–45): Church social doctrine history (Leo XIII → Francis), methodology, see-judge-act | `methodology`, `discernment`, `historical-context` |
+| [02-chapter-two-foundations-principles.md](02-chapter-two-foundations-principles.md) | 665–1083 | Chapter 2 (§§46–89): **Core principles** — dignity, common good, universal destination of goods, subsidiarity, solidarity, social justice, integral development | `dignity`, `common-good`, `universal-destination`, `subsidiarity`, `solidarity`, `social-justice` |
+| [03-chapter-three-technology-dominance.md](03-chapter-three-technology-dominance.md) | 1084–1474 | Chapter 3 (§§90–130): **AI-specific** — technocratic paradigm, AI governance, accountability, transparency, transhumanism critique, human primacy | `technocratic-paradigm`, `ai-governance`, `transparency`, `oversight`, `human-primacy` |
+| [04-chapter-four-truth-work-freedom.md](04-chapter-four-truth-work-freedom.md) | 1475–1975 | Chapter 4 (§§131–181): Truth, disinformation, dignity of work, unemployment, freedom from dependencies, data colonialism, AI labor supply chain | `truth`, `manipulation`, `human-oversight`, `dependency`, `labor-dignity`, `freedom`, `privacy` |
+| [05-chapter-five-civilization-of-love.md](05-chapter-five-civilization-of-love.md) | 1976–2395 | Chapter 5 (§§182–228): Autonomous weapons, lethal AI, non-negotiable human control over lethal decisions, culture of power, multilateralism | `autonomous-weapons`, `lethal-ai`, `accountability-chain`, `power-concentration` |
+| [06-conclusion-and-notes.md](06-conclusion-and-notes.md) | 2396–3110 | Conclusion (§§229–245) + all 224 footnotes | `synthesis`, `program-of-action` |
 | [principles-reference.md](principles-reference.md) | synthesized | **Humanitas-checker rule map**: 10 principles → rule ID prefixes, key quotes, CLI operationalization | all |
 
 ---
