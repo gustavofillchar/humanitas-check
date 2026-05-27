@@ -208,7 +208,19 @@ Fail the pipeline when an agent's system prompt violates any principle:
 
 ## Claude Code skill
 
-`/humanitas-check` slash command available when working in this repo.
+The `/humanitas-check` slash command lets you audit prompts directly from Claude Code.
+
+**Install the skill in your project:**
+```sh
+# install the package (if not already)
+npm install --save-dev humanitas-check
+
+# copy the skill to your project
+mkdir -p .claude/commands
+cp node_modules/humanitas-check/.claude/commands/humanitas-check.md .claude/commands/
+```
+
+Then in Claude Code, run `/humanitas-check path/to/system-prompt.txt` or `/humanitas-check` and paste your prompt directly.
 
 ---
 

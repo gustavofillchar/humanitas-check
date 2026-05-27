@@ -16,7 +16,9 @@
   },
   "files": [
     "dist/",
-    "docs/encyclicals/principles-reference.md"
+    "docs/encyclicals/principles-reference.md",
+    "docs/examples/",
+    ".claude/commands/"
   ],
   "keywords": [
     "ai",
