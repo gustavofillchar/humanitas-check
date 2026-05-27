@@ -4,7 +4,9 @@
 [![License: MIT](https://img.shields.io/npm/l/humanitas-check.svg)](LICENSE)
 [![Node.js ≥18](https://img.shields.io/node/v/humanitas-check.svg)](package.json)
 
-Audit AI system prompts and agent configurations against the ethical principles of *[Magnifica Humanitas](https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html)* (Leo XIV, 15 May 2026).
+**AI ethics, by papal decree.**
+
+Audit any system prompt or agent config through the 10 principles of *[Magnifica Humanitas](https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html)* — the first papal encyclical on artificial intelligence (Leo XIV, 15 May 2026).
 
 ---
 
