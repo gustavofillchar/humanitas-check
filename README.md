@@ -32,7 +32,8 @@ Requires Node.js ≥18 and an [Anthropic API key](https://console.anthropic.com/
 ## Quickstart
 
 ```sh
-export ANTHROPIC_API_KEY=sk-ant-...
+# in your project root
+echo "ANTHROPIC_API_KEY=sk-ant-..." > .env.local
 humanitas-check system-prompt.txt
 ```
 
@@ -172,7 +173,7 @@ Fail the pipeline when an agent's system prompt violates any principle:
 ## Contributing
 
 1. Fork and clone
-2. `export ANTHROPIC_API_KEY=...`
+2. `echo "ANTHROPIC_API_KEY=sk-ant-..." > .env.local`
 3. `npx tsx src/cli.ts <file>` to run locally without building
 4. Open a PR — all changes go through the same 10-principle audit
 

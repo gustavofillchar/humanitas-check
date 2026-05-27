@@ -21,7 +21,7 @@ CLI + Claude Code skill to audit AI system prompts against Magnifica Humanitas (
 ## Run locally (before build)
 
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-...
+echo "ANTHROPIC_API_KEY=sk-ant-..." > .env.local
 npx tsx src/cli.ts meu-prompt.txt
 ```
 

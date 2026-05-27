@@ -1,9 +1,28 @@
 #!/usr/bin/env node
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { program } from 'commander';
 import { analyzeContent } from './analyze.js';
 import { formatText, formatJSON } from './formatter.js';
 import type { CheckOptions } from './types.js';
+
+function loadEnvFile(filePath: string): void {
+  if (!existsSync(filePath)) return;
+  const lines = readFileSync(filePath, 'utf-8').split('\n');
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const eq = trimmed.indexOf('=');
+    if (eq === -1) continue;
+    const key = trimmed.slice(0, eq).trim();
+    const val = trimmed.slice(eq + 1).trim().replace(/^["']|["']$/g, '');
+    if (key && !(key in process.env)) process.env[key] = val;
+  }
+}
+
+const cwd = process.cwd();
+loadEnvFile(join(cwd, '.env.local'));
+loadEnvFile(join(cwd, '.env'));
 
 const VALID_MODELS = ['claude-opus-4-7', 'claude-sonnet-4-6'];
 
@@ -29,7 +48,12 @@ program
     }
 
     if (!process.env['ANTHROPIC_API_KEY']) {
-      console.error('Error: ANTHROPIC_API_KEY environment variable not set');
+      const hasEnv = existsSync(join(cwd, '.env')) || existsSync(join(cwd, '.env.local'));
+      if (!hasEnv) {
+        console.error('Error: no .env or .env.local found in current directory — run humanitas-check from your project root');
+      } else {
+        console.error('Error: ANTHROPIC_API_KEY not set in .env/.env.local or environment');
+      }
       process.exit(2);
     }
 
