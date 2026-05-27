@@ -6,6 +6,15 @@
   "bin": {
     "humanitas-check": "./dist/cli.js"
   },
+  "exports": {
+    "./analyze": {
+      "import": "./dist/analyze.js",
+      "types": "./dist/analyze.d.ts"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/cli.ts",
