@@ -50,7 +50,7 @@ program
     if (!process.env['ANTHROPIC_API_KEY']?.trim()) {
       const hasEnv = existsSync(join(cwd, '.env')) || existsSync(join(cwd, '.env.local'));
       if (!hasEnv) {
-        console.error('Error: no .env or .env.local found in current directory — run humanitas-check from your project root');
+        console.error('Error: no .env or .env.local found in current directory.\nhumanitas-check requires an Anthropic API key to analyze prompts.\nCreate a .env or .env.local file with:\n\n  ANTHROPIC_API_KEY=sk-ant-...\n\nOr set the environment variable directly before running.');
       } else {
         console.error('Error: ANTHROPIC_API_KEY not set in .env/.env.local or environment');
       }
